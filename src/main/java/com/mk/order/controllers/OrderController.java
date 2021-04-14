@@ -32,20 +32,20 @@ public class OrderController {
 	}
 
 	@GetMapping("/{id}")
-	public Order getByOrderId(@PathVariable int id) {
-		LOGGER.info("Received Request to getByOrderId {}. ", id);
+	public Order findById(@PathVariable int id) {
+		LOGGER.info("Received Request to findById {}. ", id);
 		return orderService.findById(id);
 	}
 
 	@GetMapping("/orders")
-	public List<Order> list() {
+	public List<Order> findAll() {
 		return orderService.findAll();
 	}
 
-	@GetMapping("/orders/{id}")
-	public ResponseEntity<List<Order>> get(@PathVariable Integer id) {
+	@GetMapping("/orders/{userId}")
+	public ResponseEntity<List<Order>> findByUserId(@PathVariable Integer userId) {
 		try {
-			List<Order> orders = orderService.findByUserId(id);
+			List<Order> orders = orderService.findByUserId(userId);
 			return new ResponseEntity<List<Order>>(orders, HttpStatus.OK);
 		} catch (NoSuchElementException e) {
 			return new ResponseEntity<List<Order>>(HttpStatus.NOT_FOUND);
@@ -53,7 +53,7 @@ public class OrderController {
 	}
 
 	@PostMapping("/orders")
-	public ResponseEntity<Order> add(@RequestBody Order order) {
+	public ResponseEntity<Order> save(@RequestBody Order order) {
 		return new ResponseEntity<>(orderService.save(order), HttpStatus.CREATED);
 
 	}

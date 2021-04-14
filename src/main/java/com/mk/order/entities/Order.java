@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Order {
 
-	private Integer orderId;
+	private Integer id;
 	BigDecimal orderAmount;
 	Date orderDate;
 	Integer userId;
@@ -15,21 +15,21 @@ public class Order {
 		super();
 	}
 
-	public Order(Integer orderId, BigDecimal orderAmount, Date orderDate, Integer userId, String host) {
+	public Order(Integer id, BigDecimal orderAmount, Date orderDate, Integer userId, String host) {
 		super();
-		this.orderId = orderId;
+		this.id = id;
 		this.orderAmount = orderAmount;
 		this.orderDate = orderDate;
 		this.userId = userId;
 		this.host = host;
 	}
 
-	public Integer getOrderId() {
-		return orderId;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setOrderId(Integer orderId) {
-		this.orderId = orderId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public BigDecimal getOrderAmount() {
@@ -71,7 +71,7 @@ public class Order {
 		result = prime * result + ((host == null) ? 0 : host.hashCode());
 		result = prime * result + ((orderAmount == null) ? 0 : orderAmount.hashCode());
 		result = prime * result + ((orderDate == null) ? 0 : orderDate.hashCode());
-		result = prime * result + ((orderId == null) ? 0 : orderId.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
@@ -100,10 +100,10 @@ public class Order {
 				return false;
 		} else if (!orderDate.equals(other.orderDate))
 			return false;
-		if (orderId == null) {
-			if (other.orderId != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!orderId.equals(other.orderId))
+		} else if (!id.equals(other.id))
 			return false;
 		if (userId == null) {
 			if (other.userId != null)
@@ -115,8 +115,8 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [orderId=" + orderId + ", orderAmount=" + orderAmount + ", orderDate=" + orderDate + ", userId="
-				+ userId + ", host=" + host + "]";
+		return "Order [id=" + id + ", orderAmount=" + orderAmount + ", orderDate=" + orderDate + ", userId=" + userId
+				+ ", host=" + host + "]";
 	}
 
 }

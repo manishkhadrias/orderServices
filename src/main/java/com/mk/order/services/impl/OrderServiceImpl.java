@@ -45,7 +45,7 @@ public class OrderServiceImpl implements OrderService {
 	public Order save(Order order) {
 		LOGGER.info("Received Request to save HOST_NAME {}. ", hostName);
 		order.setHost(hostName);
-		order.setOrderId(++orderCount);
+		order.setId(++orderCount);
 		orders.add(order);
 		return order;
 
@@ -67,7 +67,7 @@ public class OrderServiceImpl implements OrderService {
 		Iterator<Order> iterator = orders.iterator();
 		while (iterator.hasNext()) {
 			Order order = iterator.next();
-			if (order.getOrderId() == id) {
+			if (order.getId() == id) {
 				iterator.remove();
 			}
 		}
@@ -76,7 +76,7 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public Order findById(Integer id) {
 		for (Order order : orders) {
-			if (order.getOrderId() == id) {
+			if (order.getId() == id) {
 				return order;
 			}
 		}
