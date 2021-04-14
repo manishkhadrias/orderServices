@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: order-api
+  name: order-api
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: order-api
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: order-api
+    spec:
+      containers:
+      - image: manishkhadria/order-api:0.0.1-SNAPSHOT
+        imagePullPolicy: IfNotPresent
+        name: order-api
+#        env:
+#        - name: DB_NAME
+#          valueFrom:
+#            configMapKeyRef:
+#              key: DB_NAME
+#              name: order-api-config
+#        - name: DB_HOSTNAME
+#          valueFrom:
+#            configMapKeyRef:
+#              key: DB_HOSTNAME
+#              name: order-api-config
+#        - name: DB_PASSWORD
+#          valueFrom:
+#            secretKeyRef:
+#              key: DB_PASSWORD
+#              name: order-api-secrets
+#        - name: DB_PORT
+#          valueFrom:
+#            configMapKeyRef:
+#              key: DB_PORT
+#              name: order-api-config
+#        - name: DB_USERNAME
+#          valueFrom:
+#            configMapKeyRef:
+#              key: DB_USERNAME
+#              name: order-api-config
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: order-api
+  namespace: default
+  labels:
+    app: order-api
+spec:
+  ports:
+  - protocol: TCP
+    port: 8000
+    targetPort: 8000
+  selector:
+    app: order-api
+#  type: ClusterIP
+  type: LoadBalancer
