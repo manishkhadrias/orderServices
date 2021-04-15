@@ -27,9 +27,9 @@ public class OrderServiceImpl implements OrderService {
 	private static int orderCount = 3;
 
 	static {
-		orders.add(new Order(1, new BigDecimal("250"), new Date(), 1, "default"));
-		orders.add(new Order(2, new BigDecimal("350"), new Date(), 1, "default"));
-		orders.add(new Order(3, new BigDecimal("450"), new Date(), 2, "default"));
+		orders.add(new Order(1, new BigDecimal("250"), new Date(), 1, "static-data"));
+		orders.add(new Order(2, new BigDecimal("350"), new Date(), 1, "static-data"));
+		orders.add(new Order(3, new BigDecimal("450"), new Date(), 2, "static-data"));
 	}
 
 	// @Value(${ENVIRONMENT_VARIABLE_NAME:DEFAULT_VALUE})

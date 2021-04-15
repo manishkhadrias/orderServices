@@ -6,10 +6,10 @@ import java.util.Date;
 public class Order {
 
 	private Integer id;
-	BigDecimal orderAmount;
-	Date orderDate;
-	Integer userId;
-	String host;
+	private BigDecimal orderAmount;
+	private Date orderDate;
+	private Integer userId;
+	private String host;
 
 	public Order() {
 		super();
@@ -69,9 +69,9 @@ public class Order {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((host == null) ? 0 : host.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((orderAmount == null) ? 0 : orderAmount.hashCode());
 		result = prime * result + ((orderDate == null) ? 0 : orderDate.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
@@ -90,6 +90,11 @@ public class Order {
 				return false;
 		} else if (!host.equals(other.host))
 			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
 		if (orderAmount == null) {
 			if (other.orderAmount != null)
 				return false;
@@ -99,11 +104,6 @@ public class Order {
 			if (other.orderDate != null)
 				return false;
 		} else if (!orderDate.equals(other.orderDate))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
 			return false;
 		if (userId == null) {
 			if (other.userId != null)
