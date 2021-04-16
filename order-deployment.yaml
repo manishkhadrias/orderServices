@@ -26,7 +26,7 @@ spec:
         name: order-api
         env:
           - name: JAEGER_HOSTNAME
-            value: http://jaeger-allinone
+            value: jaeger-agent
           - name: JAEGER_PORT
             value: "6831"
       restartPolicy: Always
