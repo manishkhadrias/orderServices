@@ -21,35 +21,14 @@ spec:
         app: order-api
     spec:
       containers:
-      - image: manishkhadria/order-api:0.0.1-SNAPSHOT
+      - image: manishkhadria/order-api:0.0.2-SNAPSHOT
         imagePullPolicy: IfNotPresent
         name: order-api
-#        env:
-#        - name: DB_NAME
-#          valueFrom:
-#            configMapKeyRef:
-#              key: DB_NAME
-#              name: order-api-config
-#        - name: DB_HOSTNAME
-#          valueFrom:
-#            configMapKeyRef:
-#              key: DB_HOSTNAME
-#              name: order-api-config
-#        - name: DB_PASSWORD
-#          valueFrom:
-#            secretKeyRef:
-#              key: DB_PASSWORD
-#              name: order-api-secrets
-#        - name: DB_PORT
-#          valueFrom:
-#            configMapKeyRef:
-#              key: DB_PORT
-#              name: order-api-config
-#        - name: DB_USERNAME
-#          valueFrom:
-#            configMapKeyRef:
-#              key: DB_USERNAME
-#              name: order-api-config
+        env:
+          - name: JAEGER_HOSTNAME
+            value: http://jaeger-allinone
+          - name: JAEGER_PORT
+            value: "6831"
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
 ---
